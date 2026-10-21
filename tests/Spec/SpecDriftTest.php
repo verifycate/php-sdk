@@ -15,6 +15,7 @@ use Verifycate\Sdk\Dto\Recipient;
 use Verifycate\Sdk\Dto\RecipientIssue;
 use Verifycate\Sdk\Dto\RecipientPage;
 use Verifycate\Sdk\Dto\VerificationResult;
+use Verifycate\Sdk\Dto\WorkspaceInfo;
 use Verifycate\Sdk\Operations;
 
 final class SpecDriftTest extends TestCase
@@ -134,6 +135,7 @@ final class SpecDriftTest extends TestCase
             RecipientPage::class => ['ListWorkspaceRecipientsOutputBody'],
             PublicCertificate::class => ['PublicCertificateBody'],
             VerificationResult::class => ['VerifyCertificateOutputBody'],
+            WorkspaceInfo::class => ['CurrentWorkspaceBody'],
         ];
 
         foreach ($map as $class => $schemaNames) {

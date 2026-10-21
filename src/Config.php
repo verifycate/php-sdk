@@ -86,4 +86,16 @@ final class Config
     {
         return $this->userAgent;
     }
+
+    /**
+     * Return a copy of this configuration with a different workspace slug.
+     */
+    public function withWorkspace(?string $workspace): self
+    {
+        $clone = clone $this;
+        $workspace = $workspace === null ? null : trim($workspace);
+        $clone->workspace = $workspace === '' || $workspace === null ? null : $workspace;
+
+        return $clone;
+    }
 }

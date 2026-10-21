@@ -14,6 +14,13 @@ final class Operations
         'response' => 'CertificateListOutputBody',
     ];
 
+    public const CURRENT_WORKSPACE = [
+        'method' => 'GET',
+        'path' => '/api/v1/workspaces/current',
+        'policy' => 'any',
+        'response' => 'CurrentWorkspaceBody',
+    ];
+
     public const GET_CERTIFICATE = [
         'method' => 'GET',
         'path' => '/api/v1/workspaces/{slug}/certificates/{id}',
@@ -156,6 +163,7 @@ final class Operations
     public static function all(): array
     {
         return [
+            'currentWorkspace' => self::CURRENT_WORKSPACE,
             'listCertificates' => self::LIST_CERTIFICATES,
             'getCertificate' => self::GET_CERTIFICATE,
             'createCertificate' => self::CREATE_CERTIFICATE,

@@ -6,6 +6,15 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- `workspace()->current()` resolves the workspace bound to an API key,
+  including its slug, name, seat status and scopes.
+- `Config::withWorkspace()` and `Client::withWorkspace()` rebind a client after
+  resolving a workspace from an API key.
+- `WorkspaceInfo` DTO with `canReadCertificates()` and
+  `canWriteCertificates()` helpers.
+
 ## [0.1.0] - 2026-10-21
 
 ### Added

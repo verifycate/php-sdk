@@ -13,6 +13,7 @@ use Verifycate\Sdk\Resources\Certificates;
 use Verifycate\Sdk\Resources\Issues;
 use Verifycate\Sdk\Resources\Recipients;
 use Verifycate\Sdk\Resources\Verification;
+use Verifycate\Sdk\Resources\Workspace;
 
 final class Client
 {
@@ -28,6 +29,8 @@ final class Client
 
     private Verification $verification;
 
+    private Workspace $workspace;
+
     private ?Request $lastRequest = null;
 
     public function __construct(Config $config, ?TransportInterface $transport = null)
@@ -38,6 +41,7 @@ final class Client
         $this->issues = new Issues($this);
         $this->recipients = new Recipients($this);
         $this->verification = new Verification($this);
+        $this->workspace = new Workspace($this);
     }
 
     public function getConfig(): Config
@@ -63,6 +67,22 @@ final class Client
     public function verification(): Verification
     {
         return $this->verification;
+    }
+
+    /**
+     * Resolve the workspace bound to the API key.
+     */
+    public function workspace(): Workspace
+    {
+        return $this->workspace;
+    }
+
+    /**
+     * Return a client bound to a workspace resolved from the API key.
+     */
+    public function withWorkspace(string $workspace): self
+    {
+        return new self($this->config->withWorkspace($workspace), $this->transport);
     }
 
     /**

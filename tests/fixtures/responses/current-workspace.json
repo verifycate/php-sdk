@@ -1,0 +1,11 @@
+{
+  "slug": "acme",
+  "name": "Acme Academy",
+  "issuer_name": "Acme Academy",
+  "seat_live": true,
+  "permissions": [
+    "certificates:read",
+    "certificates:write"
+  ],
+  "full_access": false
+}

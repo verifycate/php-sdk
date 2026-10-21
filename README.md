@@ -79,6 +79,28 @@ On PHP 8.0+ every resource method also accepts named arguments:
 $page = $client->certificates()->list(search: 'Leadership', limit: 100);
 ```
 
+## Connect with only an API key
+
+The workspace slug is optional in `Config`. Resolve it from the key first, then
+rebind the client:
+
+```php
+use Verifycate\Sdk\Client;
+use Verifycate\Sdk\Config;
+
+$client = new Client(new Config('vc_live_...'));
+
+$workspace = $client->workspace()->current();
+if (! $workspace->canWriteCertificates()) {
+    throw new RuntimeException('This API key cannot issue certificates.');
+}
+
+$client = $client->withWorkspace($workspace->getSlug());
+```
+
+`workspace()->current()` returns the slug, name, seat status, scopes and whether
+the key has full workspace access.
+
 ## Resources
 
 | Accessor | What it covers |
@@ -87,6 +109,7 @@ $page = $client->certificates()->list(search: 'Leadership', limit: 100);
 | `issues()` | List issues for a certificate, import recipients, get/update/delete an issue, issue, reissue, resend an unlock form |
 | `recipients()` | List recipients across the workspace, fetch one recipient by email with every issue they hold |
 | `verification()` | Fetch a public certificate and verify its signature |
+| `workspace()` | Resolve the workspace bound to the API key, including its permissions |
 
 Every response object is a typed DTO with status helpers and the complete raw
 payload:

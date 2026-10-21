@@ -2666,6 +2666,70 @@
                 ],
                 "type": "object"
             },
+            "CurrentWorkspaceBody": {
+                "additionalProperties": false,
+                "properties": {
+                    "full_access": {
+                        "description": "Whether the API key has unrestricted workspace access",
+                        "examples": [
+                            false
+                        ],
+                        "type": "boolean"
+                    },
+                    "issuer_name": {
+                        "description": "Published issuer name",
+                        "examples": [
+                            "Acme Academy"
+                        ],
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Workspace name",
+                        "examples": [
+                            "Acme Academy"
+                        ],
+                        "type": "string"
+                    },
+                    "permissions": {
+                        "description": "API key permissions; empty for full-access keys",
+                        "examples": [
+                            [
+                                "certificates:read"
+                            ]
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": [
+                            "array",
+                            "null"
+                        ]
+                    },
+                    "seat_live": {
+                        "description": "Whether the workspace has an active seat",
+                        "examples": [
+                            true
+                        ],
+                        "type": "boolean"
+                    },
+                    "slug": {
+                        "description": "Workspace slug",
+                        "examples": [
+                            "acme"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "slug",
+                    "name",
+                    "issuer_name",
+                    "seat_live",
+                    "permissions",
+                    "full_access"
+                ],
+                "type": "object"
+            },
             "DeleteCertificateOutputBody": {
                 "additionalProperties": false,
                 "properties": {
@@ -7412,6 +7476,59 @@
                 "tags": [
                     "Unlock Forms"
                 ]
+            }
+        },
+        "/api/v1/workspaces/current": {
+            "get": {
+                "description": "Resolve the workspace bound to the workspace API key, including the key's permissions and seat status. Use this to connect a client without asking the user for a workspace slug.",
+                "operationId": "get-api-v1-workspaces-current",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CurrentWorkspaceBody"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Problem"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Problem"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "content": {
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Problem"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
+                    }
+                },
+                "summary": "Get the workspace for the current API key",
+                "tags": [
+                    "Workspace Connection"
+                ],
+                "x-verifycate-api-key-policy": "any"
             }
         },
         "/api/v1/workspaces/{slug}/certificates": {
@@ -14880,6 +14997,10 @@
         }
     ],
     "tags": [
+        {
+            "description": "Resolve the workspace bound to an API key for client setup.",
+            "name": "Workspace Connection"
+        },
         {
             "description": "Certificates.",
             "name": "Certificates"
