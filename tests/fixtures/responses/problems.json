@@ -1,0 +1,62 @@
+{
+  "400": {
+    "type": "https://docs.verifycate.com/errors/invalid_email",
+    "title": "Bad Request",
+    "status": 400,
+    "detail": "A valid email address is required.",
+    "code": "invalid_email"
+  },
+  "401": {
+    "type": "about:blank",
+    "title": "Unauthorized",
+    "status": 401,
+    "detail": "The API key is missing or invalid.",
+    "code": "unauthorized"
+  },
+  "402": {
+    "type": "about:blank",
+    "title": "Payment Required",
+    "status": 402,
+    "detail": "The workspace needs an active Pro seat.",
+    "code": "payment_required"
+  },
+  "403": {
+    "type": "about:blank",
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "The API key cannot write certificates.",
+    "code": "forbidden"
+  },
+  "404": {
+    "type": "about:blank",
+    "title": "Not Found",
+    "status": 404,
+    "detail": "Certificate not found.",
+    "code": "not_found"
+  },
+  "422": {
+    "type": "about:blank",
+    "title": "Unprocessable Entity",
+    "status": 422,
+    "detail": "The recipient could not be validated.",
+    "code": "recipient_validation_failed",
+    "errors": [
+      { "field": "email", "message": "Email is not deliverable." }
+    ],
+    "data": { "summary": { "total": 1, "invalid": 1 } }
+  },
+  "429": {
+    "type": "about:blank",
+    "title": "Too Many Requests",
+    "status": 429,
+    "detail": "Slow down.",
+    "code": "rate_limited"
+  },
+  "500": {
+    "type": "about:blank",
+    "title": "Internal Server Error",
+    "status": 500,
+    "detail": "Something went wrong.",
+    "code": "internal_error"
+  }
+}

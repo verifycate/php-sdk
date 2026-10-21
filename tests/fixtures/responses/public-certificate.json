@@ -1,0 +1,26 @@
+{
+  "public_id": "7c1f0a5e-0f2b-4a1c-9f4d-2b3c4d5e6f70",
+  "status": "active",
+  "recipient_name": "Ada Lovelace",
+  "certificate": {
+    "name": "Leadership Essentials",
+    "certificate_type": "course",
+    "description": "Awarded for completing the five-day leadership programme.",
+    "duration": "5 days",
+    "level": "intermediate",
+    "earning_criteria": ["Attend all sessions"],
+    "skills": [],
+    "sponsors": []
+  },
+  "design_version": 3,
+  "issued_at": "2026-01-20T10:00:00Z",
+  "expires_at": "2027-01-20T10:00:00Z",
+  "png_url": "https://cdn.example.com/certificates/abc.png",
+  "pdf_url": "https://cdn.example.com/certificates/abc.pdf",
+  "attributes": { "course_hours": "40" },
+  "design": {},
+  "blockchain": {
+    "status": "complete",
+    "channels": []
+  }
+}

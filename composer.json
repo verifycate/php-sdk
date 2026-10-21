@@ -1,0 +1,71 @@
+{
+	"name": "verifycate/php-sdk",
+	"description": "Official PHP client for the Verifycate digital credential API.",
+	"type": "library",
+	"license": "MIT",
+	"keywords": [
+		"verifycate",
+		"certificates",
+		"credentials",
+		"open-badges",
+		"verification",
+		"sdk"
+	],
+	"homepage": "https://github.com/verifycate/php-sdk",
+	"support": {
+		"issues": "https://github.com/verifycate/php-sdk/issues",
+		"source": "https://github.com/verifycate/php-sdk"
+	},
+	"authors": [
+		{
+			"name": "Verifycate",
+			"homepage": "https://verifycate.com"
+		}
+	],
+	"require": {
+		"php": ">=7.4",
+		"ext-json": "*"
+	},
+	"require-dev": {
+		"phpstan/phpstan": "^2.1",
+		"phpunit/phpunit": "^9.6",
+		"psr/http-client": "^1.0",
+		"psr/http-factory": "^1.0",
+		"psr/http-message": "^1.1 || ^2.0",
+		"squizlabs/php_codesniffer": "^3.10"
+	},
+	"suggest": {
+		"ext-curl": "Required by the default CurlTransport",
+		"psr/http-client": "Required to use Psr18Transport with an existing PSR-18 client",
+		"psr/http-factory": "Required to use Psr18Transport"
+	},
+	"autoload": {
+		"psr-4": {
+			"Verifycate\\Sdk\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Verifycate\\Sdk\\Tests\\": "tests/"
+		}
+	},
+	"config": {
+		"optimize-autoloader": true,
+		"sort-packages": true,
+		"platform": {
+			"php": "7.4.33"
+		}
+	},
+	"scripts": {
+		"lint": "phpcs",
+		"lint:fix": "phpcbf",
+		"analyse": "phpstan analyse --memory-limit=1G",
+		"test": "phpunit",
+		"check": [
+			"@lint",
+			"@analyse",
+			"@test"
+		],
+		"sync-spec": "php scripts/sync-spec.php"
+	}
+}

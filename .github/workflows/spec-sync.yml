@@ -1,0 +1,32 @@
+name: Spec sync
+
+on:
+  schedule:
+    # Mondays at 06:00 UTC.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+jobs:
+  drift:
+    name: Live spec matches the snapshot
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+
+      - name: Refresh the snapshot from the live public document
+        run: php scripts/sync-spec.php https://api.verifycate.com/api/v1/openapi.json
+
+      - name: Fail when the SDK snapshot is behind the API
+        run: |
+          if ! git diff --quiet -- openapi/openapi.json; then
+            echo "The public OpenAPI document changed. Run 'composer sync-spec' and update the SDK." >&2
+            git diff --stat -- openapi/openapi.json >&2
+            exit 1
+          fi
