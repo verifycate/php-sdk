@@ -20,13 +20,12 @@ used by the WordPress plugin and other integrations.
 
 ## Installation
 
-The repository is private today, so Composer needs a VCS repository entry and
-credentials for the `verifycate` organisation:
+The package is distributed from GitHub. Add the repository and require it:
 
 ```json
 {
   "repositories": [
-    { "type": "vcs", "url": "git@github.com:verifycate/php-sdk.git" }
+    { "type": "vcs", "url": "https://github.com/verifycate/php-sdk" }
   ],
   "require": {
     "verifycate/php-sdk": "^0.1"
@@ -129,7 +128,7 @@ $certificate->toArray();         // untouched API payload
 use Verifycate\Sdk\Http\CurlTransport;
 
 $client = new Client($config, new CurlTransport([
-    CURLOPT_PROXY => 'http://proxy.internal:3128',
+    CURLOPT_PROXY => 'http://proxy.example.com:3128',
 ]));
 ```
 

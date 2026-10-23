@@ -4,7 +4,7 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project uses
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.1.0] - 2026-10-23
 
 ### Added
 
@@ -14,11 +14,6 @@ All notable changes to this project are documented here. The format follows
   resolving a workspace from an API key.
 - `WorkspaceInfo` DTO with `canReadCertificates()` and
   `canWriteCertificates()` helpers.
-
-## [0.1.0] - 2026-10-21
-
-### Added
-
 - `Client` with injectable transports and configuration for the API key,
   workspace slug, base URL and timeout.
 - Certificate resources: list, get, create, update and delete.
